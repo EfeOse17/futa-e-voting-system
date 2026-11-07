@@ -23,7 +23,8 @@ app.use(express.json({ limit: '10kb' }));
     app.use(cors({
         origin: [
             'http://127.0.0.1:5500',
-            'http://127.0.0.1:56755'
+            'http://127.0.0.1:56755',
+            'https://futa-e-voting-system-1.onrender.com'
         ]
     }));
     
