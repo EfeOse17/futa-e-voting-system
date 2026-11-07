@@ -13,6 +13,11 @@ const pool = new Pool({
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT) || 5432,
 
+    // SSL configuration for Neon PostgreSQL
+    ssl: {
+        rejectUnauthorized: false
+    },
+
     max: 10,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 5000
