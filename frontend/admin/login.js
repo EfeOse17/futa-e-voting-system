@@ -18,7 +18,7 @@ adminLoginForm.addEventListener('submit', async (event) => {
 
     try {
         // Send login details to the backend
-        const response = await fetch('http://localhost:3000/api/admins/login', {
+        const response = await fetch('http://https://futa-e-voting-system.onrender.com/api/admins/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ if (!adminToken) {
 async function verifyAdminAccess() {
     try {
         const response = await fetch(
-            'http://localhost:3000/api/admins/dashboard',
+            'http://https://futa-e-voting-system.onrender.com/api/admins/dashboard',
             {
                 method: 'GET',
                 headers: {
@@ -111,7 +111,7 @@ async function loadElections() {
     try {
 
         const response = await fetch(
-            'http://localhost:3000/api/elections',
+            'http://https://futa-e-voting-system.onrender.com/api/elections',
             {
                 method: 'GET',
                 headers: {
@@ -266,7 +266,7 @@ async function loadElections() {
                             deleteButton.textContent = 'Deleting...';
 
                             const response = await fetch(
-                                `http://localhost:3000/api/elections/${election.election_id}`,
+                                `http://https://futa-e-voting-system.onrender.com/api/elections/${election.election_id}`,
                                 {
                                     method: 'DELETE',
                                     headers: {
@@ -415,7 +415,7 @@ async function updateElectionStatus(electionId, newStatus, electionTitle) {
     try {
 
         const response = await fetch(
-            `http://localhost:3000/api/elections/${electionId}/status`,
+            `http://https://futa-e-voting-system.onrender.com/api/elections/${electionId}/status`,
             {
                 method: 'PATCH',
 
@@ -594,7 +594,7 @@ createElectionForm.addEventListener('submit', async (event) => {
 
 
         const response = await fetch(
-            'http://localhost:3000/api/elections',
+            'http://https://futa-e-voting-system.onrender.com/api/elections',
             {
                 method: 'POST',
 
@@ -743,7 +743,7 @@ editElectionForm.addEventListener('submit', async (event) => {
 
 
         const response = await fetch(
-            `http://localhost:3000/api/elections/${electionId}`,
+            `http://https://futa-e-voting-system.onrender.com/api/elections/${electionId}`,
             {
                 method: 'PUT',
 

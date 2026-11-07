@@ -64,7 +64,7 @@ otpForm.addEventListener('submit', async (e) => {
 
         // Send OTP to Backend
         const response = await fetch(
-            'http://localhost:3000/api/otp-verification',
+            'http://https://futa-e-voting-system.onrender.com/api/otp-verification',
             {
                 method: 'POST',
 
@@ -150,7 +150,7 @@ resendOtpButton.addEventListener('click', async () => {
 
     try {
         const response = await fetch(
-            'http://localhost:3000/api/resend-otp',
+            'http://https://futa-e-voting-system.onrender.com/api/resend-otp',
             {
                 method: 'POST',
                 headers: {

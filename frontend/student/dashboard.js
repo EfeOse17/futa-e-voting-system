@@ -83,7 +83,7 @@ if (!studentToken) {
 // ========================================
 // API CONFIGURATION
 // ========================================
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://https://futa-e-voting-system.onrender.com';
 
 
 // ========================================

@@ -160,12 +160,12 @@ async function loadDashboardStats() {
             votesResponse
         ] = await Promise.all([
 
-            fetch('http://localhost:3000/api/admin-dashboard/students', { headers }),
-            fetch('http://localhost:3000/api/admin-dashboard/election-stats', { headers }),
-            fetch('http://localhost:3000/api/admin-dashboard/candidates', { headers }),
-            fetch('http://localhost:3000/api/admin-dashboard/voters', { headers }),
-            fetch('http://localhost:3000/api/admin-dashboard/verification-stats', { headers }),
-            fetch('http://localhost:3000/api/admin-dashboard/votes', { headers })
+            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/students', { headers }),
+            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/election-stats', { headers }),
+            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/candidates', { headers }),
+            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/voters', { headers }),
+            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/verification-stats', { headers }),
+            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/votes', { headers })
 
         ]);
 
@@ -251,7 +251,7 @@ async function loadRecentVoters() {
     try {
 
         const response = await fetch(
-            'http://localhost:3000/api/admin-dashboard/recent-voters',
+            'http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/recent-voters',
             {
                 method: 'GET',
                 headers: {
@@ -379,7 +379,7 @@ if (createAdminForm) {
 
             // Send administrator details to the backend
             const response = await fetch(
-                'http://localhost:3000/api/admins/create',
+                'http://https://futa-e-voting-system.onrender.com/api/admins/create',
                 {
                     method: 'POST',
 
@@ -440,7 +440,7 @@ async function verifyAdminAccess() {
     try {
 
         const response = await fetch(
-            'http://localhost:3000/api/admins/dashboard',
+            'http://https://futa-e-voting-system.onrender.com/api/admins/dashboard',
             {
                 method: 'GET',
                 headers: {

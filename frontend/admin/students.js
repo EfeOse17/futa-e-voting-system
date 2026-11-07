@@ -5,7 +5,7 @@
 // Admin authentication
 const adminToken = sessionStorage.getItem('adminToken');
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://https://futa-e-voting-system.onrender.com/api';
 
 
 // ==========================================
