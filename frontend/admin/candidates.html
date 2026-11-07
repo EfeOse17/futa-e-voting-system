@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Candidates | FUTA E-Voting</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="elections.css">
+    <link rel="stylesheet" href="candidates.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="brand-logo">
+                <img src="../assets/futa-logo.png" alt="FUTA Logo">
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="brand-text">
+                <h2>FUTA E-Voting</h2>
+                <p>Secure Electronic Voting Platform</p>
+            </div>
+
+            <span class="brand-divider"></span>
+
+            <p class="university-name">
+                Federal University of Technology, Akure
+            </p>
+
+            <span class="admin-label">ADMINISTRATION PORTAL</span>
+
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="elections.html" class="nav-link">Elections</a>
+            <a href="candidates.html" class="nav-link active">Candidates</a>
+            <a href="students.html" class="nav-link">Students</a>
+            <a href="results.html" class="nav-link">Results</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="dashboard-header">
+
+            <div>
+                <h1>Candidates Management</h1>
+                <p>Add, manage and monitor election candidates.</p>
+            </div>
+
+            <button class="create-election-btn" id="addCandidateBtn">
+                + Add Candidate
+            </button>
+
+        </header>
+
+
+        <!-- Candidate Statistics -->
+        <section class="stats-container">
+
+            <div class="stat-card">
+                <h3>Total Candidates</h3>
+                <p id="totalCandidates">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Elections with Candidates</h3>
+                <p id="electionsWithCandidates">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Upcoming Elections</h3>
+                <p id="upcomingElections">0</p>
+            </div>
+
+        </section>
+
+
+        <!-- Candidates Table -->
+        <section class="elections-section">
+
+            <div class="section-heading">
+                <h2>All Candidates</h2>
+                <p>View and manage candidates registered for elections.</p>
+            </div>
+
+            <div class="elections-table-container">
+
+                <table class="elections-table">
+
+                    <thead>
+                        <tr>
+                            <th>Candidate ID</th>
+                            <th>Candidate Name</th>
+                            <th>Election</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="candidatesTableBody">
+                        <tr>
+                            <td colspan="4">Loading candidates...</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Add Candidate Modal -->
+        <div class="modal-overlay" id="addCandidateModal">
+
+            <div class="modal-container">
+
+                <div class="modal-header">
+                    <h2>Add New Candidate</h2>
+                    <button type="button" id="closeAddModalBtn">&times;</button>
+                </div>
+
+                <form id="addCandidateForm">
+
+                    <div class="form-group">
+                        <label for="candidateName">Candidate Name</label>
+
+                        <input
+                            type="text"
+                            id="candidateName"
+                            placeholder="Enter candidate's full name"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="candidateElection">Select Election</label>
+
+                        <select id="candidateElection" required>
+                            <option value="">Select an upcoming election</option>
+                        </select>
+                    </div>
+
+                    <p class="form-note">
+                        Candidates can only be added to upcoming elections.
+                    </p>
+
+                    <div class="modal-actions">
+
+                        <button type="button" id="cancelAddModalBtn">
+                            Cancel
+                        </button>
+
+                        <button type="submit" id="saveCandidateBtn">
+                            Add Candidate
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- Edit Candidate Modal -->
+        <div class="modal-overlay" id="editCandidateModal">
+
+            <div class="modal-container">
+
+                <div class="modal-header">
+                    <h2>Edit Candidate</h2>
+                    <button type="button" id="closeEditModalBtn">&times;</button>
+                </div>
+
+                <form id="editCandidateForm">
+
+                    <input type="hidden" id="editCandidateId">
+
+                    <div class="form-group">
+                        <label for="editCandidateName">Candidate Name</label>
+
+                        <input
+                            type="text"
+                            id="editCandidateName"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editCandidateElection">Election</label>
+
+                        <input
+                            type="text"
+                            id="editCandidateElection"
+                            readonly
+                        >
+                    </div>
+
+                    <p class="form-note">
+                        A candidate's election assignment cannot be changed here.
+                    </p>
+
+                    <div class="modal-actions">
+
+                        <button type="button" id="cancelEditModalBtn">
+                            Cancel
+                        </button>
+
+                        <button type="submit" id="updateCandidateBtn">
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="candidates.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login | FUTA E-Voting</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="logo-container">
+                <a href="../index.html">
+                    <img src="../assets/futa-logo.png" alt="FUTA Logo">
+                </a>
+            </div>
+
+            <h1>Student Login</h1>
+            <p class="subtitle">Welcome back! Sign in to access your voting dashboard.</p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="matric_number">Matriculation Number</label>
+                    <input
+                        type="text"
+                        id="matric_number"
+                        name="matric_number"
+                        placeholder="e.g. TDT/20/2300"
+                        maxlength="20"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <p id="loginMessage" class="message"></p>
+
+                <button type="submit" id="loginButton">Sign In</button>
+
+            </form>
+
+            <p class="register-link">
+                Don't have an account?
+                <a href="register.html">Register here</a>
+            </p>
+
+            <p class="home-link">
+                <a href="../index.html">← Back to Home</a>
+            </p>
+
+            <p class="footer-text">
+                FUTA E-Voting Platform | Academic Prototype
+            </p>
+
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

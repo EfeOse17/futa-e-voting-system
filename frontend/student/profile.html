@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | FUTA E-Voting</title>
+
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <button class="close-sidebar" id="closeSidebar"
+                aria-label="Close navigation">
+                &times;
+            </button>
+
+            <div class="sidebar-logo">
+                <img src="../assets/futa-logo.png" alt="FUTA Logo">
+
+                <div>
+                    <h2>FUTA</h2>
+                    <p>E-Voting System</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <p class="nav-heading">MENU</p>
+
+                <a href="dashboard.html" class="nav-link">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a href="dashboard.html#elections" class="nav-link">
+                    <span>☷</span>
+                    Elections
+                </a>
+
+                <a href="profile.html" class="nav-link active">
+                    <span>♙</span>
+                    My Profile
+                </a>
+
+                <p class="nav-heading account-heading">ACCOUNT</p>
+
+                <button id="logoutButton"
+                    class="nav-link logout-link">
+                    <span>⇥</span>
+                    Logout
+                </button>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Academic Project Prototype</p>
+                <small>For Demonstration Purposes Only</small>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Topbar -->
+            <header class="topbar">
+
+                <button class="menu-toggle" id="menuToggle"
+                    aria-label="Open navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="topbar-title">
+                    <h3>Student Portal</h3>
+                    <p>Federal University of Technology, Akure</p>
+                </div>
+
+                <div class="topbar-profile">
+
+                    <div class="profile-avatar" id="topAvatar">
+                        S
+                    </div>
+
+                    <div>
+                        <h4 id="topStudentName">Student</h4>
+                        <p id="topMatricNumber">Loading...</p>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Profile Content -->
+            <section class="profile-content">
+
+                <!-- Page Heading -->
+                <div class="page-heading">
+
+                    <div>
+                        <p class="welcome-label">STUDENT ACCOUNT</p>
+                        <h1>My Profile</h1>
+
+                        <p>
+                            View your registered information and
+                            account details.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Profile Overview -->
+                <section class="profile-overview">
+
+                    <div class="overview-avatar" id="profileAvatar">
+                        S
+                    </div>
+
+                    <div class="overview-information">
+
+                        <h2 id="profileName">Loading...</h2>
+
+                        <p id="profileMatric">
+                            Loading matriculation number...
+                        </p>
+
+                        <span class="verified-badge">
+                            ✓ Verified Student
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Personal Information -->
+                <section class="profile-section">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>Personal Information</h2>
+
+                            <p>
+                                Your registered student information.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-card">
+
+                        <div class="profile-details">
+
+                            <div class="profile-detail">
+                                <p>Full Name</p>
+                                <h4 id="fullName">Loading...</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Matriculation Number</p>
+                                <h4 id="matricNumber">Loading...</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Email Address</p>
+                                <h4 id="emailAddress">Loading...</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Department</p>
+                                <h4 id="department">Loading...</h4>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Account Information -->
+                <section class="profile-section">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>Account Information</h2>
+
+                            <p>
+                                Your voter account status and verification.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-card">
+
+                        <div class="profile-details">
+
+                            <div class="profile-detail">
+                                <p>Account Type</p>
+                                <h4>Student Voter</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Account Status</p>
+                                <h4 class="active-text">Active</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Verification Status</p>
+                                <h4 class="active-text">Verified</h4>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Voting Activity -->
+                <section class="profile-section">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>Voting Activity</h2>
+
+                            <p>
+                                View your participation in available elections.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-card">
+
+                        <div id="votingActivity"
+                            class="voting-activity">
+
+                            <p class="loading-message">
+                                Loading voting activity...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Change Password -->
+                <section class="profile-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Change Password</h2>
+                        <p>
+                            Update your account password to keep your account secure.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="profile-card">
+
+                <form id="changePasswordForm">
+
+                    <!-- Current Password -->
+                    <div class="password-field">
+
+                    <label for="currentPassword">
+                        Current Password
+                    </label>
+
+                    <div class="password-input-wrapper">
+
+                        <input
+                            type="password"
+                            id="currentPassword"
+                            name="current_password"
+                            placeholder="Enter your current password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="currentPassword"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                    </div>
+
+
+                <!-- New Password -->
+                <div class="password-field">
+
+                    <label for="newPassword">
+                        New Password
+                    </label>
+
+                    <div class="password-input-wrapper">
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        name="new_password"
+                        placeholder="Enter your new password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        data-target="newPassword"
+                    >
+                        Show
+                    </button>
+
+                    </div>
+
+                    <small>
+                        Your password must contain at least 8 characters.
+                    </small>
+
+                </div>
+
+
+                <!-- Confirm New Password -->
+                <div class="password-field">
+
+                    <label for="confirmPassword">
+                        Confirm New Password
+                    </label>
+
+                    <div class="password-input-wrapper">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirm_password"
+                            placeholder="Confirm your new password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            data-target="confirmPassword"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Response Message -->
+                <div
+                    id="changePasswordMessage"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+
+                <!-- Submit Button -->
+                    <button
+                        type="submit"
+                        id="changePasswordButton"
+                        class="change-password-button"
+                    >
+                        Change Password
+                    </button>
+
+                </form>
+                </div>
+        </section>     
+        
+        
+                <!-- Footer -->
+                <footer class="dashboard-footer">
+
+                    <p>
+                        © 2026 FUTA E-Voting System.
+                        Academic Project Prototype.
+                    </p>
+
+                </footer>
+
+            </section>
+        </main>
+    </div>
+
+
+    <script src="profile.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Elections | FUTA E-Voting</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="elections.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="brand-logo">
+                <img src="../assets/futa-logo.png" alt="FUTA Logo">
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="brand-text">
+                <h2>FUTA E-Voting</h2>
+                <p>Secure Electronic Voting Platform</p>
+            </div>
+
+            <span class="brand-divider"></span>
+
+            <p class="university-name">
+                Federal University of Technology, Akure
+            </p>
+
+            <span class="admin-label">ADMINISTRATION PORTAL</span>
+
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="elections.html" class="nav-link active">Elections</a>
+            <a href="candidates.html" class="nav-link">Candidates</a>
+            <a href="students.html" class="nav-link">Students</a>
+            <a href="results.html" class="nav-link">Results</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="dashboard-header">
+            <div>
+                <h1>Elections Management</h1>
+                <p>Create, manage and monitor elections.</p>
+            </div>
+
+            <button class="create-election-btn" id="createElectionBtn">
+                + Create Election
+            </button>
+        </header>
+
+
+        <!-- Election Statistics -->
+        <section class="stats-container">
+
+            <div class="stat-card">
+                <h3>Total Elections</h3>
+                <p id="totalElections">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Upcoming Elections</h3>
+                <p id="upcomingElections">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Ongoing Elections</h3>
+                <p id="ongoingElections">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completed Elections</h3>
+                <p id="completedElections">0</p>
+            </div>
+
+        </section>
+
+
+        <!-- Elections Table -->
+        <section class="elections-section">
+
+            <div class="section-heading">
+                <h2>All Elections</h2>
+                <p>View and manage all registered elections.</p>
+            </div>
+
+            <div class="elections-table-container">
+
+                <table class="elections-table">
+
+                    <thead>
+                        <tr>
+                            <th>Election Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="electionsTableBody">
+                        <tr>
+                            <td colspan="5">Loading elections...</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Create Election Modal -->
+        <div class="modal-overlay" id="createElectionModal">
+
+            <div class="modal-container">
+
+            <div class="modal-header">
+                <h2>Create New Election</h2>
+                <button type="button" id="closeModalBtn">&times;</button>
+            </div>
+
+            <form id="createElectionForm">
+
+                <div class="form-group">
+                    <label for="electionTitle">Election Title</label>
+                    <input
+                        type="text"
+                        id="electionTitle"
+                        placeholder="Enter election title"
+                        maxlength="150"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="startDate">Start Date and Time</label>
+                    <input type="datetime-local" id="startDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="endDate">End Date and Time</label>
+                    <input type="datetime-local" id="endDate">
+                </div>
+
+                <p class="form-note">
+                    You can leave both date fields empty and schedule the election later.
+                </p>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelModalBtn">Cancel</button>
+                    <button type="submit" id="saveElectionBtn">
+                        Create Election
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div> 
+    
+    <!-- Edit Election Modal -->
+    <div class="modal-overlay" id="editElectionModal">
+
+        <div class="modal-container">
+
+        <div class="modal-header">
+            <h2>Edit Election</h2>
+            <button type="button" id="closeEditModalBtn">&times;</button>
+        </div>
+
+        <form id="editElectionForm">
+
+            <input type="hidden" id="editElectionId">
+
+            <div class="form-group">
+                <label for="editElectionTitle">Election Title</label>
+                <input
+                    type="text"
+                    id="editElectionTitle"
+                    maxlength="150"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="editStartDate">Start Date and Time</label>
+                <input type="datetime-local" id="editStartDate">
+            </div>
+
+            <div class="form-group">
+                <label for="editEndDate">End Date and Time</label>
+                <input type="datetime-local" id="editEndDate">
+            </div>
+
+            <p class="form-note">
+                Leave both date fields empty if the election is not yet scheduled.
+            </p>
+
+            <div class="modal-actions">
+                <button type="button" id="cancelEditModalBtn">Cancel</button>
+
+                <button type="submit" id="updateElectionBtn">
+                    Save Changes
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+    </main>
+
+</div>
+
+<script src="elections.js"></script>
+
+</body>
+</html>

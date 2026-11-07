@@ -1,0 +1,212 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Main Container */
+.verification-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Verification Card */
+.verification-card {
+    background: #ffffff;
+    padding: 40px 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.logo-container img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+/* Heading */
+.verification-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.verification-heading h1 {
+    font-size: 25px;
+    color: #14532d;
+    margin-bottom: 12px;
+}
+
+.verification-heading p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 9px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #15803d;
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1);
+}
+
+/* OTP Input */
+#otp {
+    text-align: center;
+    letter-spacing: 8px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Verification Message */
+.verification-message {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Verify Button */
+#verifyButton {
+    width: 100%;
+    padding: 14px;
+    background: #15803d;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#verifyButton:hover {
+    background: #166534;
+}
+
+#verifyButton:disabled {
+    background: #86a98f;
+    cursor: not-allowed;
+}
+
+/* Login Link */
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #666;
+}
+
+.login-link a {
+    color: #15803d;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/*Resend button*/
+.resend-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.resend-container p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+#resendOtpButton {
+    background: transparent;
+    color: #15803d;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#resendOtpButton:hover {
+    text-decoration: underline;
+}
+
+#resendOtpButton:disabled {
+    color: #999;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+/* Disclaimer */
+.project-disclaimer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+}
+
+.project-disclaimer p {
+    font-size: 11px;
+    color: #999;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+
+    .verification-card {
+        padding: 30px 22px;
+    }
+
+    .verification-heading h1 {
+        font-size: 22px;
+    }
+
+    .verification-heading p {
+        font-size: 13px;
+    }
+
+    .logo-container img {
+        width: 75px;
+        height: 75px;
+    }
+
+}

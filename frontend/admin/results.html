@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results | FUTA E-Voting</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="elections.css">
+    <link rel="stylesheet" href="results.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="brand-logo">
+                <img src="../assets/futa-logo.png" alt="FUTA Logo">
+            </div>
+
+            <button class="menu-toggle" id="menuToggle" type="button"
+                aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="brand-text">
+                <h2>FUTA E-Voting</h2>
+                <p>Secure Electronic Voting Platform</p>
+            </div>
+
+            <span class="brand-divider"></span>
+
+            <p class="university-name">
+                Federal University of Technology, Akure
+            </p>
+
+            <span class="admin-label">ADMINISTRATION PORTAL</span>
+
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="elections.html" class="nav-link">Elections</a>
+            <a href="candidates.html" class="nav-link">Candidates</a>
+            <a href="students.html" class="nav-link">Students</a>
+            <a href="results.html" class="nav-link active">Results</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="dashboard-header">
+            <div>
+                <h1>Election Results</h1>
+                <p>View and monitor the results of completed elections.</p>
+            </div>
+        </header>
+
+
+        <!-- Results Statistics -->
+        <section class="stats-container">
+
+            <div class="stat-card">
+                <h3>Completed Elections</h3>
+                <p id="totalCompletedElections">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Votes Cast</h3>
+                <p id="totalVotesCast">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Election Selected</h3>
+                <p id="selectedElectionName">None</p>
+            </div>
+
+        </section>
+
+
+        <!-- Results Section -->
+        <section class="elections-section">
+
+            <div class="section-heading">
+                <h2>View Election Results</h2>
+                <p>Select a completed election to view its results.</p>
+            </div>
+
+            <!-- Election Selection -->
+            <div class="results-filter">
+
+                <label for="electionSelect">
+                    Select Election
+                </label>
+
+                <select id="electionSelect">
+                    <option value="">Loading completed elections...</option>
+                </select>
+
+            </div>
+
+
+            <!-- Election Information -->
+            <div class="results-election-info" id="resultsElectionInfo">
+
+                <h3 id="resultsElectionTitle">
+                    No Election Selected
+                </h3>
+
+                <p id="resultsElectionStatus">
+                    Select a completed election to view its results.
+                </p>
+
+            </div>
+
+
+            <!-- Candidate Results Table -->
+            <div class="elections-table-container">
+
+                <table class="elections-table">
+
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Candidate Name</th>
+                            <th>Total Votes</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="resultsTableBody">
+                        <tr>
+                            <td colspan="4">
+                                Select an election to view its results.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script src="results.js"></script>
+
+</body>
+</html>

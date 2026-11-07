@@ -1,0 +1,91 @@
+/* Results Filter */
+.results-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 25px 0;
+    max-width: 500px;
+}
+
+.results-filter label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.results-filter select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.results-filter select:focus {
+    border-color: #00843D;
+}
+
+
+/* Selected Election Information */
+.results-election-info {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #f5f9f6;
+    border-left: 4px solid #00843D;
+    border-radius: 6px;
+}
+
+.results-election-info h3 {
+    font-size: 18px;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.results-election-info p {
+    font-size: 13px;
+    color: #666;
+}
+
+
+/* Results Table */
+#resultsTableBody td {
+    padding: 16px;
+}
+
+#resultsTableBody tr:first-child td:first-child {
+    font-weight: 700;
+}
+
+.results-percentage {
+    font-weight: 600;
+    color: #00843D;
+}
+
+
+/* Empty and Loading Messages */
+.results-message {
+    text-align: center;
+    padding: 25px !important;
+    color: #777;
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+
+    .results-filter {
+        max-width: 100%;
+    }
+
+    .results-election-info {
+        padding: 15px;
+    }
+
+    .results-election-info h3 {
+        font-size: 16px;
+    }
+
+}

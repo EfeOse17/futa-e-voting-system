@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | FUTA E-Voting</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <button class="close-sidebar" id="closeSidebar" aria-label="Close navigation">
+                &times;
+            </button>
+
+            <div class="sidebar-logo">
+                <img src="../assets/futa-logo.png" alt="FUTA Logo">
+                <div>
+                    <h2>FUTA</h2>
+                    <p>E-Voting System</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <p class="nav-heading">MENU</p>
+
+                <a href="dashboard.html" class="nav-link active">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a href="#elections" class="nav-link">
+                    <span>☷</span>
+                    Elections
+                </a>
+
+                <a href="profile.html" class="nav-link">
+                    <span>♙</span>
+                    My Profile
+                </a>
+
+                <p class="nav-heading account-heading">ACCOUNT</p>
+
+                <button id="logoutButton" class="nav-link logout-link">
+                    <span>⇥</span>
+                    Logout
+                </button>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Academic Project Prototype</p>
+                <small>For Demonstration Purposes Only</small>
+            </div>
+
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Navigation -->
+            <header class="topbar">
+
+                <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="topbar-title">
+                    <h3>Student Portal</h3>
+                    <p>Federal University of Technology, Akure</p>
+                </div>
+
+                <div class="topbar-profile">
+                    <div class="profile-avatar">S</div>
+
+                    <div>
+                        <h4 id="topStudentName">Student</h4>
+                        <p id="topMatricNumber">Loading...</p>
+                    </div>
+                </div>
+
+            </header>
+
+
+            <!-- Dashboard Content -->
+            <section class="dashboard-content">
+
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+
+                    <div>
+                        <p class="welcome-label">STUDENT DASHBOARD</p>
+
+                        <h1>
+                            Welcome back,
+                            <span id="welcomeName">Student</span>!
+                        </h1>
+
+                        <p>
+                            Welcome to the FUTA electronic voting platform.
+                            Participate in elections and make your voice count.
+                        </p>
+                    </div>
+
+                    <div class="welcome-icon">
+                        🗳️
+                    </div>
+
+                </div>
+
+
+                <!-- Statistics -->
+                <div class="stats-container">
+
+                    <div class="stat-card">
+                        <div class="stat-icon green-icon">▤</div>
+
+                        <div>
+                            <p>Available Elections</p>
+                            <h2 id="availableElections">--</h2>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue-icon">✓</div>
+
+                        <div>
+                            <p>Account Status</p>
+                            <h2 class="verified-status">Verified</h2>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange-icon">◷</div>
+
+                        <div>
+                            <p>Voting Status</p>
+                            <h2 id="votingStatus">Pending</h2>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Elections Section -->
+                <section class="elections-section" id="elections">
+
+                    <div class="section-heading">
+
+                        <div>
+                            <h2>Available Elections</h2>
+                            <p>View elections available for participation.</p>
+                        </div>
+
+                        <span class="section-tag">ELECTIONS</span>
+
+                    </div>
+
+                    <div id="electionsContainer" class="elections-container">
+
+                        <div class="loading-message">
+                            Loading elections...
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Student Profile -->
+                <section class="profile-section" id="profile">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Student Information</h2>
+                            <p>Your registered account information.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="profile-card">
+
+                        <div class="profile-card-header">
+
+                            <div class="large-avatar">S</div>
+
+                            <div>
+                                <h3 id="profileName">Student</h3>
+                                <p>Verified Student Account</p>
+                            </div>
+
+                            <span class="verified-badge">Verified</span>
+
+                        </div>
+
+
+                        <div class="profile-details">
+
+                            <div class="profile-detail">
+                                <p>Email Address</p>
+                                <h4 id="profileEmail">Loading...</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Department</p>
+                                <h4 id="profileDepartment">Loading...</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Matriculation Number</p>
+                                <h4 id="profileMatric">Loading...</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Account Type</p>
+                                <h4>Student Voter</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Account Status</p>
+                                <h4 class="active-text">Active</h4>
+                            </div>
+
+                            <div class="profile-detail">
+                                <p>Verification Status</p>
+                                <h4 class="active-text">Verified</h4>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Footer -->
+                <footer class="dashboard-footer">
+                    <p>
+                        © 2026 FUTA E-Voting System.
+                        Academic Project Prototype.
+                    </p>
+                </footer>
+
+            </section>
+        </main>
+    </div>
+
+
+    <script src="dashboard.js"></script>
+
+</body>
+</html>

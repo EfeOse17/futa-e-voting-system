@@ -1,0 +1,36 @@
+/* Candidates Management Page */
+
+/* Election Dropdown */
+#candidateElection {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+    cursor: pointer;
+}
+
+#candidateElection:focus {
+    border-color: #2563eb;
+}
+
+/* Read-only Election Field */
+#editCandidateElection {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #f3f4f6;
+    color: #64748b;
+    cursor: not-allowed;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .elections-table {
+        min-width: 600px;
+    }
+}

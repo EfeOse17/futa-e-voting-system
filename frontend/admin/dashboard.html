@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | E-Voting System</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="sidebar-header">
+
+                <div class="brand-logo">
+                    <img src="../assets/futa-logo.png" alt="FUTA Logo">
+                </div>
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                    ☰
+                </button>
+
+                <div class="brand-text">
+                    <h2>FUTA E-Voting</h2>
+                    <p>Secure Electronic Voting Platform</p>
+                </div>
+
+                <span class="brand-divider"></span>
+
+                <p class="university-name">
+                    Federal University of Technology Akure
+                </p>
+
+                <span class="admin-label">
+                    ADMINISTRATION PORTAL
+                </span>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+
+                <a href="dashboard.html" class="nav-link active">
+                    Dashboard
+                </a>
+
+                <a href="elections.html" class="nav-link">
+                    Elections
+                </a>
+
+                <a href="candidates.html" class="nav-link">
+                    Candidates
+                </a>
+
+                <a href="students.html" class="nav-link">
+                    Students
+                </a>
+
+                <a href="results.html" class="nav-link">
+                    Results
+                </a>
+
+            </nav>
+
+
+            <!-- Logout -->
+            <button
+                id="logoutButton"
+                class="logout-button"
+                type="button">
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome to the administration panel.</p>
+                </div>
+
+                <div class="admin-info">
+                    <span id="adminName">Administrator</span>
+                </div>
+
+            </header>
+
+
+            <!-- Overview Section -->
+            <section class="overview-section">
+
+                <h2>Overview</h2>
+
+                <div class="stats-container">
+
+                    <div class="stat-card">
+                        <h3>Total Students</h3>
+                        <p id="totalStudents">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Total Elections</h3>
+                        <p id="totalElections">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Total Candidates</h3>
+                        <p id="totalCandidates">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Active Elections</h3>
+                        <p id="activeElections">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Total Voter Accounts</h3>
+                        <p id="totalVoters">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Verified Voters</h3>
+                        <p id="verifiedVoters">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Total Votes Cast</h3>
+                        <p id="totalVotes">0</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Admin Management Section -->
+            <!-- Visible to Super Admins only -->
+            <section
+                class="admin-management"
+                id="adminManagementSection"
+                hidden>
+
+                <div class="section-header">
+
+                    <h2>Manage Administrators</h2>
+
+                    <p>
+                        Create and manage administrator accounts.
+                    </p>
+
+                </div>
+
+
+                <!-- Create Administrator Form -->
+                <div class="admin-form-container">
+
+                    <h3>Create New Administrator</h3>
+
+                    <form id="createAdminForm">
+
+                        <div class="form-group">
+
+                            <label for="adminFullName">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="adminFullName"
+                                name="full_name"
+                                placeholder="Enter full name"
+                                maxlength="100"
+                                autocomplete="name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="adminEmail">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="adminEmail"
+                                name="email"
+                                placeholder="Enter email address"
+                                maxlength="254"
+                                autocomplete="email"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="adminPassword">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="adminPassword"
+                                name="password"
+                                placeholder="Create a password"
+                                minlength="8"
+                                autocomplete="new-password"
+                                required>
+
+                        </div>
+
+
+                        <!-- Form Feedback -->
+                        <p
+                            id="adminFormMessage"
+                            aria-live="polite">
+                        </p>
+
+
+                        <button
+                            type="submit"
+                            id="createAdminButton">
+                            Create Administrator
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- Recent Registrations Section -->
+            <section class="recent-voters-section">
+
+                <div class="section-heading">
+
+                    <h2>Recent Registrations</h2>
+
+                    <p>
+                        Latest students who registered on the platform.
+                    </p>
+
+                </div>
+
+
+                <div class="recent-voters-container">
+
+                    <table class="recent-voters-table">
+
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Matric Number</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="recentVotersTable">
+
+                            <tr>
+                                <td colspan="4">
+                                    Loading recent registrations...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- System Overview Section -->
+            <section class="activity-section">
+
+                <h2>System Overview</h2>
+
+                <div class="activity-card">
+
+                    <p>
+                        Welcome to your e-voting administration dashboard.
+                    </p>
+
+                    <p>
+                        Use the navigation menu to manage elections,
+                        candidates, students and results.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- Dashboard JavaScript -->
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

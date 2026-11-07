@@ -1,0 +1,302 @@
+/* Create Election Button */
+.create-election-btn {
+    background: #1d4ed8;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.create-election-btn:hover {
+    background: #1e40af;
+    transform: translateY(-2px);
+}
+
+
+/* Elections Section */
+.elections-section {
+    margin-top: 35px;
+}
+
+.elections-table-container {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+
+/* Elections Table */
+.elections-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+.elections-table th,
+.elections-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+}
+
+.elections-table th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+}
+
+.elections-table td {
+    color: #334155;
+}
+
+.elections-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* Election Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-upcoming {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-ongoing {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-completed {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-buttons button {
+    border: none;
+    padding: 7px 11px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.edit-btn {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.delete-btn {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.action-buttons button:hover {
+    opacity: 0.8;
+}
+
+
+
+/* Responsive Layout */
+@media (max-width: 650px) {
+    .create-election-btn {
+        width: 100%;
+    }
+
+    .elections-table-container {
+        padding: 12px;
+    }
+
+    .elections-table {
+        min-width: 750px;
+    }
+
+    .action-buttons {
+        flex-wrap: wrap;
+    }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+/* Show Modal */
+.modal-overlay.show {
+    display: flex;
+}
+
+/* Modal Container */
+.modal-container {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.25s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    font-size: 21px;
+    color: #172554;
+}
+
+.modal-header button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #64748b;
+    cursor: pointer;
+}
+
+/* Form Fields */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+.form-note {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.modal-actions button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#cancelModalBtn {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+#saveElectionBtn {
+    background: #1d4ed8;
+    color: #fff;
+}
+
+#saveElectionBtn:hover {
+    background: #1e40af;
+}
+
+#cancelModalBtn:hover {
+    background: #cbd5e1;
+}
+
+/* Mobile Modal */
+@media (max-width: 500px) {
+    .modal-container {
+        padding: 22px;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+
+    .modal-actions button {
+        flex: 1;
+    }
+}
+
+/* Start Election Button */
+.start-btn {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* Complete Election Button */
+.complete-btn {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+/* Hover Effects */
+.start-btn:hover,
+.complete-btn:hover {
+    opacity: 0.8;
+}

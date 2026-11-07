@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Election Details | FUTA E-Voting</title>
+
+    <link rel="stylesheet" href="election-details.css">
+</head>
+
+<body>
+
+    <div class="election-page">
+
+        <!-- Header -->
+        <header class="election-header">
+
+            <div class="header-brand">
+                <img src="../assets/futa-logo.png" alt="FUTA Logo">
+
+                <div>
+                    <h2>FUTA</h2>
+                    <p>E-Voting System</p>
+                </div>
+            </div>
+
+            <a href="dashboard.html" class="back-link">
+                ← Back to Dashboard
+            </a>
+
+        </header>
+
+
+        <!-- Main Content -->
+        <main class="election-main">
+
+            <!-- Loading Message -->
+            <div id="loadingMessage" class="loading-message">
+                Loading election details...
+            </div>
+
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message" hidden></div>
+
+
+            <!-- Election Information -->
+            <section id="electionDetails" hidden>
+
+                <div class="election-intro">
+
+                    <span class="section-label">ELECTION DETAILS</span>
+
+                    <h1 id="electionTitle">Election Title</h1>
+
+                    <span id="electionStatus" class="election-status">
+                        Loading...
+                    </span>
+
+                    <p class="election-description">
+                        Review the election information and the candidates
+                        contesting in this election.
+                    </p>
+
+                </div>
+
+
+                <!-- Election Dates -->
+                <div class="election-information">
+
+                    <div class="information-card">
+                        <p>Election Start</p>
+                        <h3 id="electionStart">Loading...</h3>
+                    </div>
+
+                    <div class="information-card">
+                        <p>Election End</p>
+                        <h3 id="electionEnd">Loading...</h3>
+                    </div>
+
+                </div>
+
+
+                <!-- Candidates -->
+                <section class="candidates-section">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Election Candidates</h2>
+                            <p>Meet the candidates contesting in this election.</p>
+                        </div>
+
+                        <span id="candidateCount">0 Candidates</span>
+                    </div>
+
+
+                    <div id="candidatesContainer" class="candidates-container">
+
+                        <!-- Candidates will be loaded here -->
+
+                    </div>
+
+                </section>
+
+
+                <!-- Vote Confirmation -->
+                <section id="voteConfirmation" class="vote-confirmation" hidden>
+
+                <div class="confirmation-heading">
+                    <h2>Confirm Your Vote</h2>
+                    <p>Please review your selection carefully before submitting.</p>
+                </div>
+
+                <div class="selected-candidate">
+                    <span>YOUR SELECTED CANDIDATE</span>
+                    <h3 id="selectedCandidateName">Candidate Name</h3>
+                </div>
+
+                <p class="confirmation-warning">
+                    Important: Your vote cannot be changed once submitted.
+                    Please ensure that your selection is correct.
+                </p>
+
+                <div class="confirmation-actions">
+
+                    <button type="button" id="cancelVote" class="cancel-vote-button">
+                        Cancel Selection
+                    </button>
+
+                    <button type="button" id="confirmVote" class="confirm-vote-button">
+                        Confirm and Cast Vote
+                    </button>
+
+                </div>
+
+                <p id="voteSubmissionMessage" role="status" aria-live="polite"></p>
+
+                </section>
+
+                <!-- Voting Information -->
+                <div id="votingInformation" class="voting-information">
+
+                    <p id="votingMessage">
+                        Loading voting information...
+                    </p>
+
+                    <button type="button" id="proceedToVote" class="vote-button" hidden>
+                        Review Your Selection →
+                    </button>
+
+                </div>
+            </section>
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="election-footer">
+            <p>
+                © 2026 FUTA E-Voting System.
+                Academic Project Prototype.
+            </p>
+        </footer>
+
+    </div>
+
+
+    <script src="election-details.js"></script>
+
+</body>
+
+</html>

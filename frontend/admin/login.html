@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | E-Voting System</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <main class="login-container">
+        <div class="login-card">
+
+            <div class="logo-container">
+                <a href="../index.html">
+                    <img src="../assets/futa-logo.png" alt="FUTA Logo">
+                </a>
+            </div>
+
+            <div class="login-header">
+                <h1>Admin Login</h1>
+                <p>Sign in to access the administration dashboard.</p>
+            </div>
+
+            <form id="adminLoginForm">
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <p id="errorMessage" class="error-message"></p>
+
+                <button type="submit" id="loginButton">Login</button>
+
+            </form>
+
+            <p class="home-link">
+                <a href="../index.html">← Back to Home</a>
+            </p>
+
+        </div>
+    </main>
+
+    <script src="login.js"></script>
+</body>
+</html>
