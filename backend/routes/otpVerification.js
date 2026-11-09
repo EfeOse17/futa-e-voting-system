@@ -26,9 +26,11 @@ router.post('/', otpVerificationLimiter, async (req, res) => {
             !/^\d{6}$/.test(otp)
         ) {
             return res.status(400).json({
-                message: 'A valid matric number and 6-digit OTP are required'
+                message: 'A valid matric number and 6-digit OTP are required.'
             });
         }
+
+        const matricNumber = matric_number.trim();
 
         // Get a database connection
         client = await pool.connect();
@@ -37,53 +39,40 @@ router.post('/', otpVerificationLimiter, async (req, res) => {
         await client.query('BEGIN');
         transactionStarted = true;
 
-        // Find and lock the student's account
-        const accountResult = await client.query(
-            `SELECT account_id, is_verified
-             FROM voter_accounts
+        // Find and lock the pending registration
+        const pendingResult = await client.query(
+            `SELECT
+                matric_number,
+                full_name,
+                department,
+                email,
+                password_hash,
+                otp_hash,
+                expires_at,
+                attempts
+             FROM pending_registrations
              WHERE matric_number = $1
              FOR UPDATE`,
-            [matric_number.trim()]
+            [matricNumber]
         );
 
-        if (accountResult.rows.length === 0) {
+        if (pendingResult.rows.length === 0) {
             return res.status(404).json({
-                message: 'Account not found'
+                message: 'Pending registration not found. Please register again.'
             });
         }
 
-        const account = accountResult.rows[0];
+        const pending = pendingResult.rows[0];
 
-        // Check whether the account is already verified
-        if (account.is_verified) {
+        // Check OTP attempt limit
+        if (pending.attempts >= 5) {
             return res.status(400).json({
-                message: 'This account has already been verified'
+                message: 'Too many incorrect OTP attempts. Please request a new OTP.'
             });
         }
 
-        // Retrieve the latest unused, unexpired OTP
-        const otpResult = await client.query(
-            `SELECT otp_id, otp_hash, expires_at, attempts
-             FROM otp_verifications
-             WHERE account_id = $1
-             AND is_used = FALSE
-             AND attempts < 5
-             ORDER BY created_at DESC
-             LIMIT 1
-             FOR UPDATE`,
-            [account.account_id]
-        );
-
-        if (otpResult.rows.length === 0) {
-            return res.status(400).json({
-                message: 'No active OTP found. Please request a new one.'
-            });
-        }
-
-        const otpRecord = otpResult.rows[0];
-
-        // Check whether OTP has expired
-        if (new Date(otpRecord.expires_at) <= new Date()) {
+        // Check OTP expiry
+        if (new Date(pending.expires_at) <= new Date()) {
             return res.status(400).json({
                 message: 'OTP has expired. Please request a new one.'
             });
@@ -92,24 +81,20 @@ router.post('/', otpVerificationLimiter, async (req, res) => {
         // Compare submitted OTP with stored hash
         const isOtpValid = await bcrypt.compare(
             otp,
-            otpRecord.otp_hash
+            pending.otp_hash
         );
 
         // Handle incorrect OTP
         if (!isOtpValid) {
-            const updatedOtp = await client.query(
-                `UPDATE otp_verifications
-                 SET attempts = attempts + 1,
-                     is_used = CASE
-                         WHEN attempts + 1 >= 5 THEN TRUE
-                         ELSE is_used
-                     END
-                 WHERE otp_id = $1
+            const updatedPending = await client.query(
+                `UPDATE pending_registrations
+                 SET attempts = attempts + 1
+                 WHERE matric_number = $1
                  RETURNING attempts`,
-                [otpRecord.otp_id]
+                [matricNumber]
             );
 
-            const attempts = updatedOtp.rows[0].attempts;
+            const attempts = updatedPending.rows[0].attempts;
 
             // Commit failed attempt counter
             await client.query('COMMIT');
@@ -126,30 +111,49 @@ router.post('/', otpVerificationLimiter, async (req, res) => {
             });
         }
 
-        // Mark OTP as used
+        // Create student record after successful OTP verification
         await client.query(
-            `UPDATE otp_verifications
-             SET is_used = TRUE
-             WHERE otp_id = $1`,
-            [otpRecord.otp_id]
+            `INSERT INTO students
+             (matric_number, full_name, email, department)
+             VALUES ($1, $2, $3, $4)`,
+            [
+                pending.matric_number,
+                pending.full_name,
+                pending.email,
+                pending.department
+            ]
         );
 
-        // Activate student account
-        await client.query(
-            `UPDATE voter_accounts
-             SET is_verified = TRUE
-             WHERE account_id = $1`,
-            [account.account_id]
+        // Create verified voter account
+        const accountResult = await client.query(
+            `INSERT INTO voter_accounts
+             (matric_number, password_hash, is_verified)
+             VALUES ($1, $2, TRUE)
+             RETURNING account_id`,
+            [
+                pending.matric_number,
+                pending.password_hash
+            ]
         );
+
+        const accountId = accountResult.rows[0].account_id;
 
         // Create participation records for upcoming and ongoing elections
         await client.query(
-            `INSERT INTO voter_participation (account_id, election_id)
-            SELECT $1, election_id
-            FROM elections
-            WHERE election_status IN ('upcoming', 'ongoing')
-            ON CONFLICT (account_id, election_id) DO NOTHING`,
-            [account.account_id]
+            `INSERT INTO voter_participation
+             (account_id, election_id)
+             SELECT $1, election_id
+             FROM elections
+             WHERE election_status IN ('upcoming', 'ongoing')
+             ON CONFLICT (account_id, election_id) DO NOTHING`,
+            [accountId]
+        );
+
+        // Remove completed pending registration
+        await client.query(
+            `DELETE FROM pending_registrations
+             WHERE matric_number = $1`,
+            [matricNumber]
         );
 
         // Commit successful verification
@@ -157,14 +161,25 @@ router.post('/', otpVerificationLimiter, async (req, res) => {
         transactionCommitted = true;
 
         return res.status(200).json({
-            message: 'OTP verified successfully. Your account is now active.'
+            message: 'OTP verified successfully. Your student account has been created and activated.',
+            account: {
+                matric_number: pending.matric_number,
+                full_name: pending.full_name
+            }
         });
 
     } catch (error) {
         console.error('OTP verification error:', error.message);
 
+        // Handle duplicate student or account records
+        if (error.code === '23505') {
+            return res.status(409).json({
+                message: 'A student account with these details already exists.'
+            });
+        }
+
         return res.status(500).json({
-            message: 'An error occurred during OTP verification'
+            message: 'An error occurred during OTP verification.'
         });
 
     } finally {
@@ -173,7 +188,10 @@ router.post('/', otpVerificationLimiter, async (req, res) => {
             try {
                 await client.query('ROLLBACK');
             } catch (rollbackError) {
-                console.error('Transaction rollback error:', rollbackError.message);
+                console.error(
+                    'Transaction rollback error:',
+                    rollbackError.message
+                );
             }
         }
 

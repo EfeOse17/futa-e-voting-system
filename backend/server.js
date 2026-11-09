@@ -1,10 +1,5 @@
 require('dotenv').config();
 
-if (!process.env.JWT_SECRET) {
-    console.error('JWT_SECRET is missing from the environment variable.');
-    process.exit(1);
-}
-
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -20,15 +15,19 @@ app.use(helmet());
 app.use(express.json({ limit: '10kb' }));
 
 // CORS configuration
-    app.use(cors({
-        origin: [
-            'http://127.0.0.1:5500',
-            'http://127.0.0.1:56755',
-            'https://futa-e-voting-system-1.onrender.com'
-        ]
-    }));
-    
-// Import student routes
+const allowedOrigins = [
+    'http://127.0.0.1:5500',
+    'http://127.0.0.1:56755',
+    'http://localhost:5500',
+    'http://localhost:56755',
+    process.env.FRONTEND_URL
+].filter(Boolean);
+
+app.use(cors({
+    origin: allowedOrigins
+}));
+
+// Import routes
 const studentRoutes = require('./routes/students');
 const adminRoutes = require('./routes/admin');
 const electionRoutes = require('./routes/elections');
@@ -50,7 +49,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to FUTA E-Voting Platform!');
 });
 
-// Use student routes
+// Register routes
 app.use('/api/students', studentRoutes);
 app.use('/api/admins', adminRoutes);
 app.use('/api/elections', electionRoutes);
@@ -67,22 +66,28 @@ app.use('/api/admin-election-results', adminElectionResultsRoutes);
 app.use('/api/admin-dashboard', adminDashboardRoutes);
 app.use('/api/student', changePasswordRoutes);
 
-// Test database connection
-async function startServer() {
-    try {
-        const result = await pool.query('SELECT NOW()');
+// Export Express app for Vercel
+module.exports = app;
 
-        console.log('PostgreSQL connected successfully!');
-        console.log('Database time:', result.rows[0].now);
+// Start server locally only
+if (require.main === module) {
 
-        app.listen(PORT, () => {
-            console.log(`Server running on http://localhost:${PORT}`);
-        });
+    async function startServer() {
+        try {
+            const result = await pool.query('SELECT NOW()');
 
-    } catch (error) {
-        console.error('Database connection failed:', error.message);
-        process.exit(1);
+            console.log('PostgreSQL connected successfully!');
+            console.log('Database time:', result.rows[0].now);
+
+            app.listen(PORT, () => {
+                console.log(`Server running on http://localhost:${PORT}`);
+            });
+
+        } catch (error) {
+            console.error('Database connection failed:', error.message);
+            process.exit(1);
+        }
     }
-}
 
-startServer();
+    startServer();
+}

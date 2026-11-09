@@ -4,7 +4,7 @@
 
 
 // API URL
-const API_URL = 'http://https://futa-e-voting-system.onrender.com/api';
+const API_URL = 'https://futa-e-voting-system.onrender.com/api';
 
 
 // ==========================================
@@ -12,10 +12,14 @@ const API_URL = 'http://https://futa-e-voting-system.onrender.com/api';
 // ==========================================
 
 const registrationForm = document.getElementById('registrationForm');
+
+const fullNameInput = document.getElementById('fullName');
+const departmentInput = document.getElementById('department');
 const matricNumberInput = document.getElementById('matricNumber');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirmPassword');
+
 const registrationMessage = document.getElementById('registrationMessage');
 const registerButton = document.getElementById('registerButton');
 
@@ -44,9 +48,12 @@ registrationForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();
 
+
     // Collect form values
+    const full_name = fullNameInput.value.trim();
+    const department = departmentInput.value.trim();
     const matric_number = matricNumberInput.value.trim();
-    const email = emailInput.value.trim();
+    const email = emailInput.value.trim().toLowerCase();
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
 
@@ -56,6 +63,8 @@ registrationForm.addEventListener('submit', async (event) => {
     // ======================================
 
     if (
+        !full_name ||
+        !department ||
         !matric_number ||
         !email ||
         !password ||
@@ -63,6 +72,39 @@ registrationForm.addEventListener('submit', async (event) => {
     ) {
 
         showMessage('Please complete all fields.', 'error');
+
+        return;
+    }
+
+
+    if (full_name.length > 100 || department.length > 100) {
+
+        showMessage(
+            'Full name and department must not exceed 100 characters.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if (matric_number.length > 20) {
+
+        showMessage(
+            'Matric number must not exceed 20 characters.',
+            'error'
+        );
+
+        return;
+    }
+
+
+    if (email.length > 254) {
+
+        showMessage(
+            'Email address must not exceed 254 characters.',
+            'error'
+        );
 
         return;
     }
@@ -116,7 +158,10 @@ registrationForm.addEventListener('submit', async (event) => {
 
         registerButton.textContent = 'Creating Account...';
 
-        showMessage('Please wait while we create your account.', 'success');
+        showMessage(
+            'Please wait while we process your registration.',
+            'success'
+        );
 
 
         const response = await fetch(`${API_URL}/voter-registration`, {
@@ -128,6 +173,8 @@ registrationForm.addEventListener('submit', async (event) => {
             },
 
             body: JSON.stringify({
+                full_name,
+                department,
                 matric_number,
                 email,
                 password
@@ -140,7 +187,36 @@ registrationForm.addEventListener('submit', async (event) => {
 
 
         // ==================================
-        // HANDLE REGISTRATION ERRORS
+        // HANDLE OTP DELIVERY FAILURE
+        // ==================================
+
+        if (
+            response.status === 503 &&
+            data.otp_delivery === 'failed'
+        ) {
+
+            sessionStorage.setItem(
+                'pendingMatricNumber',
+                matric_number
+            );
+
+            showMessage(
+                'Your registration was saved, but OTP delivery failed. Redirecting you to request another OTP...',
+                'error'
+            );
+
+            setTimeout(() => {
+
+                window.location.href = 'verify-otp.html';
+
+            }, 2500);
+
+            return;
+        }
+
+
+        // ==================================
+        // HANDLE OTHER REGISTRATION ERRORS
         // ==================================
 
         if (!response.ok) {
@@ -160,29 +236,18 @@ registrationForm.addEventListener('submit', async (event) => {
 
         sessionStorage.setItem(
             'pendingMatricNumber',
-            data.account.matric_number
+            data.account?.matric_number || matric_number
         );
 
 
         // ==================================
-        // HANDLE OTP EMAIL DELIVERY
+        // DISPLAY SUCCESS MESSAGE
         // ==================================
 
-        if (data.otp_delivery === 'failed') {
-
-            showMessage(
-                'Your account was created, but OTP delivery failed. Redirecting you to request another OTP...',
-                'error'
-            );
-
-        } else {
-
-            showMessage(
-                'Registration successful! Your OTP has been sent to your email.',
-                'success'
-            );
-
-        }
+        showMessage(
+            'Registration successful! Your OTP has been sent to your email.',
+            'success'
+        );
 
 
         // Redirect to OTP verification page
