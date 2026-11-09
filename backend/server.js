@@ -49,6 +49,26 @@ app.get('/', (req, res) => {
     res.send('Welcome to FUTA E-Voting Platform!');
 });
 
+// Database health check
+app.get('/api/health', async (req, res) => {
+    try {
+        await pool.query('SELECT NOW()');
+
+        return res.status(200).json({
+            status: 'success',
+            message: 'Database connected successfully'
+        });
+
+    } catch (error) {
+        console.error('Database health check failed:', error.message);
+
+        return res.status(500).json({
+            status: 'error',
+            message: 'Database connection failed'
+        });
+    }
+});
+
 // Register routes
 app.use('/api/students', studentRoutes);
 app.use('/api/admins', adminRoutes);
