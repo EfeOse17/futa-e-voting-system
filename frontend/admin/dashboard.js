@@ -160,12 +160,12 @@ async function loadDashboardStats() {
             votesResponse
         ] = await Promise.all([
 
-            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/students', { headers }),
-            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/election-stats', { headers }),
-            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/candidates', { headers }),
-            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/voters', { headers }),
-            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/verification-stats', { headers }),
-            fetch('http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/votes', { headers })
+            fetch('https://futa-e-voting-system.vercel.app/api/admin-dashboard/students', { headers }),
+            fetch('https://futa-e-voting-system.vercel.app/api/admin-dashboard/election-stats', { headers }),
+            fetch('https://futa-e-voting-system.vercel.app/api/admin-dashboard/candidates', { headers }),
+            fetch('https://futa-e-voting-system.vercel.app/api/admin-dashboard/voters', { headers }),
+            fetch('https://futa-e-voting-system.vercel.app/api/admin-dashboard/verification-stats', { headers }),
+            fetch('https://futa-e-voting-system.vercel.app/api/admin-dashboard/votes', { headers })
 
         ]);
 
@@ -251,7 +251,7 @@ async function loadRecentVoters() {
     try {
 
         const response = await fetch(
-            'http://https://futa-e-voting-system.onrender.com/api/admin-dashboard/recent-voters',
+            'https://futa-e-voting-system.vercel.app/api/admin-dashboard/recent-voters',
             {
                 method: 'GET',
                 headers: {
@@ -379,7 +379,7 @@ if (createAdminForm) {
 
             // Send administrator details to the backend
             const response = await fetch(
-                'http://https://futa-e-voting-system.onrender.com/api/admins/create',
+                'https://futa-e-voting-system.vercel.app/api/admins/create',
                 {
                     method: 'POST',
 
@@ -440,7 +440,7 @@ async function verifyAdminAccess() {
     try {
 
         const response = await fetch(
-            'http://https://futa-e-voting-system.onrender.com/api/admins/dashboard',
+            'https://futa-e-voting-system.vercel.app/api/admins/dashboard',
             {
                 method: 'GET',
                 headers: {

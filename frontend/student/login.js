@@ -4,7 +4,7 @@ const passwordInput = document.getElementById('password');
 const loginButton = document.getElementById('loginButton');
 const loginMessage = document.getElementById('loginMessage');
 
-const API_URL = 'http://https://futa-e-voting-system.onrender.com';
+const API_URL = 'https://futa-e-voting-system.vercel.app';
 
 // Display login messages
 function showMessage(message, color) {

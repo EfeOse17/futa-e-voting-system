@@ -6,7 +6,7 @@
 // Admin authentication
 const adminToken = sessionStorage.getItem('adminToken');
 
-const API_URL = 'http://https://futa-e-voting-system.onrender.com/api';
+const API_URL = 'https://futa-e-voting-system.vercel.app/api';
 
 
 // ==========================================

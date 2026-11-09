@@ -4,7 +4,7 @@
 
 
 // API URL
-const API_URL = 'https://futa-e-voting-system.onrender.com/api';
+const API_URL = 'https://futa-e-voting-system.vercel.app/api';
 
 
 // ==========================================

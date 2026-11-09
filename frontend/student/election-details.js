@@ -4,7 +4,7 @@ console.log('Election Details JavaScript is running!');
 // ELECTION DETAILS PAGE
 // ========================================
 
-const API_URL = 'http://https://futa-e-voting-system.onrender.com/api';
+const API_URL = 'https://futa-e-voting-system.vercel.app/api';
 
 const studentToken = sessionStorage.getItem('studentToken');
 

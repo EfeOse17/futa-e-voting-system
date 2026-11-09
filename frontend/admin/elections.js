@@ -15,7 +15,7 @@ if (!adminToken) {
 async function verifyAdminAccess() {
     try {
         const response = await fetch(
-            'http://https://futa-e-voting-system.onrender.com/api/admins/dashboard',
+            'https://futa-e-voting-system.vercel.app/api/admins/dashboard',
             {
                 method: 'GET',
                 headers: {
@@ -111,7 +111,7 @@ async function loadElections() {
     try {
 
         const response = await fetch(
-            'http://https://futa-e-voting-system.onrender.com/api/elections',
+            'https://futa-e-voting-system.vercel.app/api/elections',
             {
                 method: 'GET',
                 headers: {
@@ -266,7 +266,7 @@ async function loadElections() {
                             deleteButton.textContent = 'Deleting...';
 
                             const response = await fetch(
-                                `http://https://futa-e-voting-system.onrender.com/api/elections/${election.election_id}`,
+                                `https://futa-e-voting-system.vercel.app/api/elections/${election.election_id}`,
                                 {
                                     method: 'DELETE',
                                     headers: {
@@ -415,7 +415,7 @@ async function updateElectionStatus(electionId, newStatus, electionTitle) {
     try {
 
         const response = await fetch(
-            `http://https://futa-e-voting-system.onrender.com/api/elections/${electionId}/status`,
+            `https://futa-e-voting-system.vercel.app/api/elections/${electionId}/status`,
             {
                 method: 'PATCH',
 
@@ -594,7 +594,7 @@ createElectionForm.addEventListener('submit', async (event) => {
 
 
         const response = await fetch(
-            'http://https://futa-e-voting-system.onrender.com/api/elections',
+            'https://futa-e-voting-system.vercel.app/api/elections',
             {
                 method: 'POST',
 
@@ -743,7 +743,7 @@ editElectionForm.addEventListener('submit', async (event) => {
 
 
         const response = await fetch(
-            `http://https://futa-e-voting-system.onrender.com/api/elections/${electionId}`,
+            `https://futa-e-voting-system.vercel.app/api/elections/${electionId}`,
             {
                 method: 'PUT',
 
